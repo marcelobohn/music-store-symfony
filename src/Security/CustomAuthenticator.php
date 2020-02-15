@@ -69,7 +69,7 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Username could not be found.');
+            throw new CustomUserMessageAuthenticationException('Sorry, we couldn\'t find an account with this username. Please check you\'re using the right username and try again.');
         }
 
         return $user;
