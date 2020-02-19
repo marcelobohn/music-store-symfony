@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Album_name</th>
                 <th>Year</th>
+                <th>Artist</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ album.id }}</td>
                 <td>{{ album.albumName }}</td>
                 <td>{{ album.year }}</td>
+                <td>{{ album.getArtist().getArtistName() }}</td>
                 <td>
                     <a href="{{ path('album_show', {'id': album.id}) }}">show</a>
                     <a href="{{ path('album_edit', {'id': album.id}) }}">edit</a>
