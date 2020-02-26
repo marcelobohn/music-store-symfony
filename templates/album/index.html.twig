@@ -3,14 +3,14 @@
 {% block title %}Album index{% endblock %}
 
 {% block body %}
-    <h1>Album index</h1>
+    <h1>Album</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Album_name</th>
-                <th>Year</th>
+                <th>Name</th>
+                <th>Age</th>
                 <th>Artist</th>
                 <th>actions</th>
             </tr>
@@ -20,11 +20,17 @@
             <tr>
                 <td>{{ album.id }}</td>
                 <td>{{ album.albumName }}</td>
-                <td>{{ album.year }}</td>
-                <td>{{ album.getArtist().getArtistName() }}</td>
                 <td>
-                    <a href="{{ path('album_show', {'id': album.id}) }}">show</a>
-                    <a href="{{ path('album_edit', {'id': album.id}) }}">edit</a>
+                    {% if album.getAge() > 0 %}
+                        {{ album.getAge() }} year(s)
+                    {% else %}
+                        Less then 1 year
+                    {% endif %}
+                </td>
+                <td><a href="{{ path('artist_show', {'id': album.getArtist().getId()}) }}">{{ album.getArtist().getArtistName() }}</a></td>
+                <td>
+                    <a href="{{ path('album_show', {'id': album.id}) }}" class="btn btn-lg btn-primary btn-sm">show</a>
+                    <a href="{{ path('album_edit', {'id': album.id}) }}" class="btn btn-lg btn-success btn-sm">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('album_new') }}">Create new</a>
+    <a href="{{ path('album_new') }}" class="btn btn-lg btn-primary btn-sm">Create new</a>
 {% endblock %}

@@ -12,19 +12,23 @@
                 <td>{{ album.id }}</td>
             </tr>
             <tr>
-                <th>Album_name</th>
+                <th>Name</th>
                 <td>{{ album.albumName }}</td>
             </tr>
             <tr>
                 <th>Year</th>
                 <td>{{ album.year }}</td>
             </tr>
+            <tr>
+                <th>Artist</th>
+                <td><a href="{{ path('artist_show', {'id': album.getArtist().getId()}) }}">{{ album.getArtist().getArtistName() }}</a></td>
+            </tr>            
         </tbody>
     </table>
 
-    <a href="{{ path('album_index') }}">back to list</a>
+    <a href="{{ path('album_index') }}" class="btn btn-lg btn-primary btn-sm">back to list</a>
 
-    <a href="{{ path('album_edit', {'id': album.id}) }}">edit</a>
+    <a href="{{ path('album_edit', {'id': album.id}) }}" class="btn btn-lg btn-primary btn-sm">edit</a>
 
     {{ include('album/_delete_form.html.twig') }}
 {% endblock %}

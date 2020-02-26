@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
@@ -29,7 +31,7 @@ class Album
     /**
      * @ORM\Column(type="integer")
      */
-    private $year;
+    private $year;    
 
     public function getId(): ?int
     {
@@ -65,10 +67,21 @@ class Album
         return $this->year;
     }
 
+    public function getAge(): ?int
+    {
+        return (date("Y") - $this->year);
+    }    
+
     public function setYear(int $year): self
     {
         $this->year = $year;
 
         return $this;
     }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('year', new Assert\Positive());
+        $metadata->addPropertyConstraint('year', new Assert\LessThan(date('Y') + 1));
+    }    
 }
