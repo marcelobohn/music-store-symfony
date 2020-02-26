@@ -3,14 +3,15 @@
 {% block title %}Artist index{% endblock %}
 
 {% block body %}
-    <h1>Artist index</h1>
+    <h1>Artist</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Artist_name</th>
-                <th>Twitter_handle</th>
+                <th>Name</th>
+                <th>Twitter</th>
+                <th>Albums</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,9 +21,10 @@
                 <td>{{ artist.id }}</td>
                 <td>{{ artist.artistName }}</td>
                 <td>{{ artist.twitterHandle }}</td>
+                <td>{{ artist.getAlbums().count }}</td>
                 <td>
-                    <a href="{{ path('artist_show', {'id': artist.id}) }}">show</a>
-                    <a href="{{ path('artist_edit', {'id': artist.id}) }}">edit</a>
+                    <a href="{{ path('artist_show', {'id': artist.id}) }}" class="btn btn-lg btn-primary btn-sm">show</a>
+                    <a href="{{ path('artist_edit', {'id': artist.id}) }}" class="btn btn-lg btn-success btn-sm">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('artist_new') }}">Create new</a>
+    <a href="{{ path('artist_new') }}" class="btn btn-lg btn-primary btn-sm">Create new</a>
 {% endblock %}
