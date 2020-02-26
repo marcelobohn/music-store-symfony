@@ -11,6 +11,13 @@ php bin/console doctrine:schema:update --force
 symfony serve
 ```
 
+## Run tests
+
+```
+./vendor/bin/phpspec run
+```
+
 ## Deploy
 
 Running online http://music-store-symfony.herokuapp.com/
+
