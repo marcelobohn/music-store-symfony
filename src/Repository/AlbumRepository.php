@@ -21,6 +21,21 @@ class AlbumRepository extends ServiceEntityRepository
 
     // /**
     //  * @return Album[] Returns an array of Album objects
+    //  */    
+    public function findByArtist($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.artist = :val')
+            ->setParameter('val', $id)
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    // /**
+    //  * @return Album[] Returns an array of Album objects
     //  */
     /*
     public function findByExampleField($value)

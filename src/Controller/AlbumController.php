@@ -18,10 +18,17 @@ class AlbumController extends AbstractController
     /**
      * @Route("/", name="album_index", methods={"GET"})
      */
-    public function index(AlbumRepository $albumRepository): Response
+    public function index(Request $request, AlbumRepository $albumRepository): Response
     {
+        $artist_id = $request->query->get('artist');
+        if (isset($artist_id)) {
+            $list = $albumRepository->findByArtist($request->query->get('artist'));
+        } else {
+            $list = $albumRepository->findAll();
+        }
+
         return $this->render('album/index.html.twig', [
-            'albums' => $albumRepository->findAll(),
+            'albums' => $list,
         ]);
     }
 

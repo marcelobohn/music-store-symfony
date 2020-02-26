@@ -21,7 +21,7 @@
                 <td>{{ artist.id }}</td>
                 <td>{{ artist.artistName }}</td>
                 <td>{{ artist.twitterHandle }}</td>
-                <td>{{ artist.getAlbums().count }}</td>
+                <td><a href="{{ path('album_index', {'artist': artist.id}) }}">{{ artist.getAlbums().count }}</a></td>
                 <td>
                     <a href="{{ path('artist_show', {'id': artist.id}) }}" class="btn btn-lg btn-primary btn-sm">show</a>
                     <a href="{{ path('artist_edit', {'id': artist.id}) }}" class="btn btn-lg btn-success btn-sm">edit</a>
